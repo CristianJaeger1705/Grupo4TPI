@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acerca de - GameVault</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem 2rem;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .about-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            line-height: 1.8;
+        }
+
+        .about-section h2 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .about-section p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #FFD700;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .features-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">🏠 Inicio</a></li>
+            <li><a href="games.html">🎮 Videojuegos</a></li>
+            <li><a href="reviews.html">⭐ Reseñas</a></li>
+            <li><a href="about.html">ℹ️ Acerca de</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>ℹ️ Acerca de GameVault</h1>
+
+        <div class="about-section">
+            <h2>🎮 ¿Qué es GameVault?</h2>
+            <p>
+                GameVault es tu biblioteca personal de videojuegos en línea. Una plataforma diseñada 
+                para ayudarte a organizar, catalogar y compartir tu colección de videojuegos de manera 
+                sencilla y visual.
+            </p>
+            <p>
+                Ya sea que seas un coleccionista ávido o un jugador casual, GameVault te permite 
+                mantener un registro detallado de todos tus juegos, escribir reseñas personales y 
+                llevar un control de tus experiencias gaming.
+            </p>
+        </div>
+
+        <div class="about-section">
+            <h2>📊 Estadísticas de la Colección</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalGames">0</div>
+                    <div class="stat-label">Videojuegos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalReviews">0</div>
+                    <div class="stat-label">Reseñas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="avgRating">0</div>
+                    <div class="stat-label">Calificación Promedio</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2>✨ Características Principales</h2>
+            <ul class="features-list">
+                <li>Gestión completa de tu biblioteca de videojuegos (CRUD)</li>
+                <li>Sistema de reseñas y calificaciones personalizadas</li>
+                <li>Organización por plataforma, género y año</li>
+                <li>Interfaz moderna y responsive</li>
+                <li>Búsqueda y filtrado de juegos</li>
+                <li>Estadísticas de tu colección en tiempo real</li>
+            </ul>
+        </div>
+
+        <div class="about-section">
+            <h2>🛠️ Tecnologías Utilizadas</h2>
+            <div class="tech-stack">
+                <span class="tech-badge">HTML5</span>
+                <span class="tech-badge">CSS3</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">JSON Server</span>
+                <span class="tech-badge">REST API</span>
+                <span class="tech-badge">Fetch API</span>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2>🚀 Cómo Usar</h2>
+            <p>
+                <strong>1. Configura JSON Server:</strong> Asegúrate de tener Node.js instalado y ejecuta 
+                <code style="background: rgba(0,0,0,0.3); padding: 0.2rem 0.5rem; border-radius: 5px;">
+                    json-server --watch db.json --port 3000
+                </code>
+            </p>
+            <p>
+                <strong>2. Agrega tus juegos:</strong> Navega a la sección de Videojuegos y comienza a 
+                agregar tu colección.
+            </p>
+            <p>
+                <strong>3. Escribe reseñas:</strong> Comparte tu opinión sobre los juegos que has completado 
+                en la sección de Reseñas.
+            </p>
+            <p>
+                <strong>4. Explora:</strong> Disfruta organizando y explorando tu biblioteca gaming.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const GAMES_URL = 'http://localhost:3000/games';
+        const REVIEWS_URL = 'http://localhost:3000/reviews';
+
+        // Cargar estadísticas al iniciar
+        loadStats();
+
+        async function loadStats() {
+            try {
+                // Obtener juegos
+                const gamesResponse = await fetch(GAMES_URL);
+                const games = await gamesResponse.json();
+                document.getElementById('totalGames').textContent = games.length;
+
+                // Obtener reseñas
+                const reviewsResponse = await fetch(REVIEWS_URL);
+                const reviews = await reviewsResponse.json();
+                document.getElementById('totalReviews').textContent = reviews.length;
+
+                // Calcular calificación promedio
+                if (games.length > 0) {
+                    const avgRating = games.reduce((sum, game) => sum + game.rating, 0) / games.length;
+                    document.getElementById('avgRating').textContent = avgRating.toFixed(1);
+                } else {
+                    document.getElementById('avgRating').textContent = '0.0';
+                }
+            } catch (error) {
+                console.error('Error al cargar estadísticas:', error);
+            }
+        }
+    </script>
+</body>
+</html>

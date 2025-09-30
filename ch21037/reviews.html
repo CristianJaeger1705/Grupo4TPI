@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reseñas - GameVault</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem 2rem;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .form-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            font-family: inherit;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .btn-edit {
+            background: #2196F3;
+            color: white;
+            padding: 0.5rem 1rem;
+            margin-right: 0.5rem;
+        }
+
+        .btn-delete {
+            background: #f44336;
+            color: white;
+            padding: 0.5rem 1rem;
+        }
+
+        .btn-cancel {
+            background: #757575;
+            color: white;
+            margin-left: 0.5rem;
+        }
+
+        .reviews-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .review-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .review-game {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        .review-rating {
+            font-size: 1.5rem;
+            color: #FFD700;
+        }
+
+        .review-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .review-comment {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .review-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+
+        .stars {
+            color: #FFD700;
+        }
+
+        @media (max-width: 768px) {
+            .review-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">🏠 Inicio</a></li>
+            <li><a href="games.html">🎮 Videojuegos</a></li>
+            <li><a href="reviews.html">⭐ Reseñas</a></li>
+            <li><a href="about.html">ℹ️ Acerca de</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>⭐ Gestión de Reseñas</h1>
+
+        <div class="form-section">
+            <h2 id="formTitle">Agregar Nueva Reseña</h2>
+            <form id="reviewForm">
+                <input type="hidden" id="reviewId">
+                <div class="form-group">
+                    <label for="gameId">Videojuego:</label>
+                    <select id="gameId" required>
+                        <option value="">Seleccionar juego...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="author">Tu Nombre:</label>
+                    <input type="text" id="author" required>
+                </div>
+                <div class="form-group">
+                    <label for="rating">Calificación (1-10):</label>
+                    <input type="number" id="rating" min="1" max="10" required>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Comentario:</label>
+                    <textarea id="comment" required placeholder="Escribe tu opinión sobre este juego..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Guardar Reseña</button>
+                <button type="button" class="btn-cancel" id="cancelBtn" style="display: none;">Cancelar</button>
+            </form>
+        </div>
+
+        <div class="reviews-container" id="reviewsContainer"></div>
+    </div>
+
+    <script>
+        const REVIEWS_URL = 'http://localhost:3000/reviews';
+        const GAMES_URL = 'http://localhost:3000/games';
+        let editingId = null;
+
+        // Cargar datos al iniciar
+        loadGames();
+        loadReviews();
+
+        // Manejar envío del formulario
+        document.getElementById('reviewForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const gameId = document.getElementById('gameId').value;
+            const gameSelect = document.getElementById('gameId');
+            const gameName = gameSelect.options[gameSelect.selectedIndex].text;
+            
+            const review = {
+                gameId: parseInt(gameId),
+                gameName: gameName,
+                author: document.getElementById('author').value,
+                rating: parseInt(document.getElementById('rating').value),
+                comment: document.getElementById('comment').value,
+                date: new Date().toISOString().split('T')[0]
+            };
+
+            try {
+                if (editingId) {
+                    await updateReview(editingId, review);
+                } else {
+                    await createReview(review);
+                }
+                resetForm();
+                loadReviews();
+            } catch (error) {
+                alert('Error al guardar la reseña: ' + error.message);
+            }
+        });
+
+        // Cancelar edición
+        document.getElementById('cancelBtn').addEventListener('click', resetForm);
+
+        // Cargar videojuegos para el selector
+        async function loadGames() {
+            try {
+                const response = await fetch(GAMES_URL);
+                const games = await response.json();
+                const select = document.getElementById('gameId');
+                
+                games.forEach(game => {
+                    const option = document.createElement('option');
+                    option.value = game.id;
+                    option.textContent = game.title;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error al cargar videojuegos:', error);
+            }
+        }
+
+        // Cargar todas las reseñas
+        async function loadReviews() {
+            try {
+                const response = await fetch(REVIEWS_URL);
+                const reviews = await response.json();
+                displayReviews(reviews);
+            } catch (error) {
+                console.error('Error al cargar reseñas:', error);
+            }
+        }
+
+        // Mostrar reseñas
+        function displayReviews(reviews) {
+            const container = document.getElementById('reviewsContainer');
+            
+            if (reviews.length === 0) {
+                container.innerHTML = '<p style="text-align: center; opacity: 0.7;">No hay reseñas todavía. ¡Sé el primero en escribir una!</p>';
+                return;
+            }
+            
+            container.innerHTML = reviews.map(review => {
+                const stars = '⭐'.repeat(Math.round(review.rating / 2));
+                return `
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div>
+                                <div class="review-game">${review.gameName}</div>
+                                <div class="review-meta">
+                                    <span>👤 ${review.author}</span>
+                                    <span>📅 ${review.date}</span>
+                                </div>
+                            </div>
+                            <div class="review-rating">
+                                <span class="stars">${stars}</span> ${review.rating}/10
+                            </div>
+                        </div>
+                        <div class="review-comment">${review.comment}</div>
+                        <div class="review-actions">
+                            <button class="btn-edit" onclick="editReview(${review.id})">Editar</button>
+                            <button class="btn-delete" onclick="deleteReview(${review.id})">Eliminar</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Crear reseña
+        async function createReview(review) {
+            const response = await fetch(REVIEWS_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(review)
+            });
+            if (!response.ok) throw new Error('Error al crear reseña');
+        }
+
+        // Actualizar reseña
+        async function updateReview(id, review) {
+            const response = await fetch(`${REVIEWS_URL}/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(review)
+            });
+            if (!response.ok) throw new Error('Error al actualizar reseña');
+        }
+
+        // Editar reseña
+        async function editReview(id) {
+            try {
+                const response = await fetch(`${REVIEWS_URL}/${id}`);
+                const review = await response.json();
+                
+                document.getElementById('reviewId').value = review.id;
+                document.getElementById('gameId').value = review.gameId;
+                document.getElementById('author').value = review.author;
+                document.getElementById('rating').value = review.rating;
+                document.getElementById('comment').value = review.comment;
+                
+                document.getElementById('formTitle').textContent = 'Editar Reseña';
+                document.getElementById('cancelBtn').style.display = 'inline-block';
+                editingId = id;
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (error) {
+                alert('Error al cargar reseña: ' + error.message);
+            }
+        }
+
+        // Eliminar reseña
+        async function deleteReview(id) {
+            if (!confirm('¿Estás seguro de eliminar esta reseña?')) return;
+            
+            try {
+                const response = await fetch(`${REVIEWS_URL}/${id}`, {
+                    method: 'DELETE'
+                });
+                if (!response.ok) throw new Error('Error al eliminar reseña');
+                loadReviews();
+            } catch (error) {
+                alert('Error al eliminar reseña: ' + error.message);
+            }
+        }
+
+        // Resetear formulario
+        function resetForm() {
+            document.getElementById('reviewForm').reset();
+            document.getElementById('reviewId').value = '';
+            document.getElementById('formTitle').textContent = 'Agregar Nueva Reseña';
+            document.getElementById('cancelBtn').style.display = 'none';
+            editingId = null;
+        }
+    </script>
+</body>
+</html>
