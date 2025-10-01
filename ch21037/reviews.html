@@ -249,8 +249,8 @@
     </div>
 
     <script>
-        const REVIEWS_URL = 'http://localhost:3000/reviews';
-        const GAMES_URL = 'http://localhost:3000/games';
+        const REVIEWS_URL = '/api/reviews';
+        const GAMES_URL = '/api/games';
         let editingId = null;
 
         // Cargar datos al iniciar
@@ -346,8 +346,8 @@
                         </div>
                         <div class="review-comment">${review.comment}</div>
                         <div class="review-actions">
-                            <button class="btn-edit" onclick="editReview(${review.id})">Editar</button>
-                            <button class="btn-delete" onclick="deleteReview(${review.id})">Eliminar</button>
+                            <button class="btn-edit" onclick="editReview('${review.id}')">Editar</button>
+                            <button class="btn-delete" onclick="deleteReview('${review.id}')">Eliminar</button>
                         </div>
                     </div>
                 `;

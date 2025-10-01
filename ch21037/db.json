@@ -10,13 +10,13 @@
       "id": "1"
     },
     {
-      "id": "2",
       "title": "God of War",
       "platform": "PlayStation 5",
       "genre": "Acción",
       "releaseYear": 2018,
       "rating": 9.2,
-      "coverImage": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=300&fit=crop"
+      "coverImage": "https://www.powerpyx.com/wp-content/uploads/god-of-war-2018-wallpaper-1024x576.jpg",
+      "id": "2"
     },
     {
       "id": "3",
@@ -35,6 +35,15 @@
       "releaseYear": 2023,
       "rating": 10,
       "coverImage": "https://th.bing.com/th/id/OIP.kDPoI7ODLzsR6oqEDNIwKwHaEK?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
+    },
+    {
+      "title": "Gran Turismo 7",
+      "platform": "PlayStation 5",
+      "genre": "Simulación, Carreras",
+      "releaseYear": 2023,
+      "rating": 10,
+      "coverImage": "https://tse3.mm.bing.net/th/id/OIP.iu1ZJTFuUstY-pqe89S0fgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3",
+      "id": "e0c1"
     }
   ],
   "reviews": [
@@ -64,6 +73,24 @@
       "rating": 9,
       "comment": "Adictivo y con una narrativa increíble. Perfecto para sesiones cortas.",
       "date": "2024-03-10"
+    },
+    {
+      "id": "608e",
+      "gameId": 2,
+      "gameName": "Forza Motorsport",
+      "author": "Cristian",
+      "rating": 10,
+      "comment": "Juegazo",
+      "date": "2025-09-30"
+    },
+    {
+      "id": "3d31",
+      "gameId": 2,
+      "gameName": "God of War",
+      "author": "Alexis",
+      "rating": 10,
+      "comment": "Obra maestra",
+      "date": "2025-09-30"
     }
   ]
 }

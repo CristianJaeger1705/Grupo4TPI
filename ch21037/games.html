@@ -244,7 +244,7 @@
     </div>
 
     <script>
-        const API_URL = 'http://localhost:3000/games';
+        const API_URL = '/api/games';
         let editingId = null;
 
         // Cargar videojuegos al iniciar
@@ -305,8 +305,8 @@
                             <div class="game-rating">⭐ ${game.rating}/10</div>
                         </div>
                         <div class="game-actions">
-                            <button class="btn-edit" onclick="editGame(${game.id})">Editar</button>
-                            <button class="btn-delete" onclick="deleteGame(${game.id})">Eliminar</button>
+                            <button class="btn-edit" onclick="editGame('${game.id}')">Editar</button>
+                            <button class="btn-delete" onclick="deleteGame('${game.id}')">Eliminar</button>
                         </div>
                     </div>
                 </div>
