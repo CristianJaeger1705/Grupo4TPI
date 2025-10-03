@@ -1,0 +1,174 @@
+/* ========================================
+   BASE.CSS - Estilos base y header
+   ======================================== */
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos generales del body */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+  min-height: 100vh;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ========================================
+   HEADER Y NAVEGACIÓN
+   ======================================== */
+
+header {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 15px 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Navegación para el home (con nav-container) */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-left {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-right {
+  display: flex;
+}
+
+/* Links del header */
+header a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  margin-right: 15px;
+}
+
+header a:hover {
+  background: rgba(231, 76, 60, 0.8);
+  transform: translateY(-2px);
+}
+
+header a.active {
+  background: #e74c3c;
+  box-shadow: 0 3px 10px rgba(231, 76, 60, 0.4);
+}
+
+header a.right {
+  float: right;
+  margin-right: 0;
+}
+
+/* ========================================
+   TIPOGRAFÍA BASE
+   ======================================== */
+
+h1 {
+  color: #e74c3c;
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h2 {
+  color: #e74c3c;
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ========================================
+   CONTENEDORES PRINCIPALES
+   ======================================== */
+
+/* Contenedor principal para páginas normales */
+.contenido {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Container especial para el home */
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1400px;
+  margin: 30px auto;
+  gap: 30px;
+  padding: 20px;
+  min-height: calc(100vh - 120px);
+}
+
+/* ========================================
+   RESPONSIVE BASE
+   ======================================== */
+
+@media (max-width: 768px) {
+  header {
+    padding: 10px 15px;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-left {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  header a {
+    margin-right: 10px;
+    padding: 8px 15px;
+    font-size: 0.9em;
+  }
+
+  header a.right {
+    float: none;
+    margin-right: 10px;
+  }
+
+  .contenido {
+    margin: 15px;
+    padding: 15px;
+  }
+
+  .main-container {
+    grid-template-columns: 1fr;
+    margin: 15px;
+    gap: 20px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+}

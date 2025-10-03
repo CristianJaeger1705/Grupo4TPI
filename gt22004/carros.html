@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carros - Concesionario Virtual</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+<header>
+  <div class="nav-container">
+    <div class="nav-left">
+      <a href="index.html" >Home</a>
+      <a href="carros.html" class="active">Carros</a>
+      <a href="marcas.html">Marcas</a>
+    </div>
+    <div class="nav-right">
+      <a href="acerca.html">Acerca de Nosotros</a>
+    </div>
+  </div>
+</header>
+
+
+<div class="contenido">
+  <h1>🚗 Gestión de Carros</h1>
+
+  <form id="formCarro">
+    <select id="marca" required>
+      <option value="">🏭 Seleccione la marca</option>
+    </select>
+    <input type="text" id="modelo" placeholder="🚙 Ingresa el modelo del carro" required>
+    <input type="number" id="anio" placeholder="📅 Ingresa el año del carro" min="1900" max="2030" required>
+    <select id="tipo" required>
+      <option value="">🔧 Seleccione tipo</option>
+      <option value="Sedán">Sedán</option>
+      <option value="SUV">SUV</option>
+      <option value="Todo terreno">Todo terreno</option>
+      <option value="Deportivo">Deportivo</option>
+      <option value="Hatchback">Hatchback</option>
+    </select>
+    <button type="submit">➕ Agregar Carro</button>
+  </form>
+
+  <h2>📋 Lista de Carros</h2>
+  <ul id="listaCarros">
+    <!-- Aquí se mostrarán los carros dinámicamente -->
+  </ul>
+
+  <!-- Mensaje cuando no hay carros (se mostrará si la lista está vacía) -->
+  <div class="mensaje-vacio" id="mensajeVacio" style="display: none;">
+    🚗 No hay carros registrados aún. ¡Agrega tu primer vehículo!
+  </div>
+
+  <script src="js/carros.js"></script>
+</div>
+
+<script>
+  // Script adicional para mejorar la experiencia (no interfiere con tu carros.js)
+  document.addEventListener('DOMContentLoaded', function() {
+    // Función para verificar si la lista está vacía
+    function verificarListaVacia() {
+      const lista = document.getElementById('listaCarros');
+      const mensaje = document.getElementById('mensajeVacio');
+      
+      if (lista.children.length === 0) {
+        mensaje.style.display = 'block';
+      } else {
+        mensaje.style.display = 'none';
+      }
+    }
+
+    // Verificar al cargar la página
+    verificarListaVacia();
+
+    // Observer para detectar cambios en la lista
+    const observer = new MutationObserver(verificarListaVacia);
+    observer.observe(document.getElementById('listaCarros'), {
+      childList: true
+    });
+
+    // Mejorar el formulario con animación
+    const form = document.getElementById('formCarro');
+    form.addEventListener('submit', function(e) {
+      const button = form.querySelector('button');
+      const originalText = button.textContent;
+      
+      button.textContent = '⏳ Agregando...';
+      button.disabled = true;
+      
+      // Restaurar el botón después de un momento
+      setTimeout(function() {
+        button.textContent = originalText;
+        button.disabled = false;
+      }, 1000);
+    });
+  });
+</script>
+
+</body>
+</html>

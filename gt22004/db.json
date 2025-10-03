@@ -1,0 +1,108 @@
+{
+  "carros": [
+    {
+      "id": "ac58",
+      "marca": "Mazda",
+      "modelo": "MX-5 Miata",
+      "anio": 2015,
+      "tipo": "Deportivo"
+    },
+    {
+      "id": "1d92",
+      "marca": "Tesla",
+      "modelo": "Model s",
+      "anio": 2024,
+      "tipo": "Sedán"
+    },
+    {
+      "id": "1724",
+      "marca": "Audi",
+      "modelo": "A4",
+      "anio": 2003,
+      "tipo": "Sedán"
+    },
+    {
+      "id": "5f92",
+      "marca": "Volkswagen",
+      "modelo": "Golf",
+      "anio": 1985,
+      "tipo": "Hatchback"
+    },
+    {
+      "id": "57ef",
+      "marca": "Kia",
+      "modelo": "Sportage",
+      "anio": 1993,
+      "tipo": "SUV"
+    },
+    {
+      "id": "9036",
+      "marca": "Ford",
+      "modelo": "Bronco",
+      "anio": 2020,
+      "tipo": "Todo terreno"
+    }
+  ],
+  "marcas": [
+    {
+      "id": "2",
+      "nombre": "Honda",
+      "pais": "Japónes"
+    },
+    {
+      "id": "3",
+      "nombre": "Hyundai",
+      "pais": "Corea del Sur"
+    },
+    {
+      "id": "4",
+      "nombre": "Ford",
+      "pais": "Estados Unidos"
+    },
+    {
+      "id": "5",
+      "nombre": "Chevrolet",
+      "pais": "Estados Unidos"
+    },
+    {
+      "id": "6",
+      "nombre": "Volkswagen",
+      "pais": "Alemania"
+    },
+    {
+      "id": "7",
+      "nombre": "Kia",
+      "pais": "Corea del Sur"
+    },
+    {
+      "id": "cb19",
+      "nombre": "Toyota",
+      "pais": "Japón"
+    },
+    {
+      "id": "7fc8",
+      "nombre": "Nissan",
+      "pais": "Japón"
+    },
+    {
+      "id": "07a3",
+      "nombre": "Mazda",
+      "pais": "Japón"
+    },
+    {
+      "id": "bf7d",
+      "nombre": "Mercedes-Benz",
+      "pais": "Alemania"
+    },
+    {
+      "id": "7158",
+      "nombre": "Audi",
+      "pais": "Alemania"
+    },
+    {
+      "id": "7d15",
+      "nombre": "Tesla",
+      "pais": "Estados Unidos"
+    }
+  ]
+}

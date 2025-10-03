@@ -1,0 +1,283 @@
+/* ========================================
+   COMPONENTS.CSS - Componentes reutilizables
+   ======================================== */
+
+/* ========================================
+   FORMULARIOS
+   ======================================== */
+
+#formCarro, #formMarca {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+  border: 1px solid #e0e0e0;
+}
+
+#formCarro input, #formMarca input {
+  width: 100%;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+}
+
+#formCarro input:focus, #formMarca input:focus {
+  outline: none;
+  border-color: #e74c3c;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+  transform: translateY(-2px);
+}
+
+#formCarro select{
+  width: 100%;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  color: #757575;
+}
+
+#formCarro select:focus{
+  outline: none;
+  border-color: #e74c3c;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+  transform: translateY(-2px);
+  color:#757575;
+}
+#formCarro button, #formMarca button {
+  width: 100%;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+#formCarro button:hover, #formMarca button:hover {
+  background: linear-gradient(135deg, #c0392b, #a93226);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+}
+
+#formCarro button:active, #formMarca button:active {
+  transform: translateY(0);
+}
+
+/* ========================================
+   LISTAS DE CARROS Y MARCAS
+   ======================================== */
+
+#listaCarros, #listaMarcas {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#listaCarros li, #listaMarcas li {
+  background: white;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  border-left: 5px solid #e74c3c;
+}
+
+#listaMarcas li {
+  border-left-color: #f39c12;
+}
+
+#listaCarros li:hover, #listaMarcas li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Contenido del texto en las listas */
+#listaCarros li, #listaMarcas li {
+  font-size: 16px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+/* Contenedor de botones */
+#listaCarros li .botones, #listaMarcas li .botones {
+  display: flex;
+  gap: 10px;
+}
+
+/* Botones de acción en las listas */
+#listaCarros button, #listaMarcas button {
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  min-width: 40px;
+  height: 40px;
+}
+
+#listaCarros button:hover, #listaMarcas button:hover {
+  transform: scale(1.1);
+}
+
+/* Botón editar */
+#listaCarros button[title*="Editar"], #listaMarcas button[title*="Editar"] {
+  background: #fff3cd;
+  border-color: #ffc107;
+  color: #856404;
+}
+
+#listaCarros button[title*="Editar"]:hover, #listaMarcas button[title*="Editar"]:hover {
+  background: #ffc107;
+  color: white;
+  box-shadow: 0 3px 10px rgba(255, 193, 7, 0.4);
+}
+
+/* Botón eliminar */
+#listaCarros button[title*="Eliminar"], #listaMarcas button[title*="Eliminar"] {
+  background: #f8d7da;
+  border-color: #dc3545;
+  color: #721c24;
+}
+
+#listaCarros button[title*="Eliminar"]:hover, #listaMarcas button[title*="Eliminar"]:hover {
+  background: #dc3545;
+  color: white;
+  box-shadow: 0 3px 10px rgba(220, 53, 69, 0.4);
+}
+
+/* ========================================
+   MENSAJE VACÍO
+   ======================================== */
+
+.mensaje-vacio {
+  text-align: center;
+  background: white;
+  padding: 40px 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  color: #6c757d;
+  font-size: 18px;
+  font-style: italic;
+  border: 2px dashed #dee2e6;
+}
+
+/* ========================================
+   BOTONES HOME
+   ======================================== */
+
+.btn-home {
+  display: block;
+  background: white;
+  padding: 25px 20px;
+  border-radius: 15px;
+  text-decoration: none;
+  color: #2c3e50;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  font-weight: 600;
+}
+
+.btn-home:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  border-color: #e74c3c;
+}
+
+.btn-home .sub-text {
+  display: block;
+  font-size: 14px;
+  color: #6c757d;
+  font-weight: normal;
+  margin-top: 8px;
+}
+
+.btn-home-insdustria {
+  display: block;
+  background: #da6558;
+  padding: 25px 20px;
+  border-radius: 15px;
+  text-decoration: none;
+  color: #ffffff;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  font-weight: 600;
+}
+
+.btn-home-insdustria:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  border-color: #000000;
+}
+
+
+/* ========================================
+   RESPONSIVE COMPONENTS
+   ======================================== */
+
+@media (max-width: 768px) {
+  #formCarro, #formMarca {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  #formCarro input, #formMarca input {
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+
+  #formCarro button, #formMarca button {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  #listaCarros li, #listaMarcas li {
+    padding: 15px;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .btn-home {
+    padding: 20px 15px;
+  }
+
+  .btn-industria-overlay {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .btn-industria-overlay:hover {
+    transform: scale(1.05);
+  }
+}
