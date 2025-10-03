@@ -1,0 +1,31 @@
+{
+  "noticias": [
+    {
+      "id": "1",
+      "titulo": "ChatGPT revoluciona la educación",
+      "contenido": "Cada vez más universidades usan IA para aprendizaje."
+    },
+    {
+      "id": "2",
+      "titulo": "IA en la medicina",
+      "contenido": "Algoritmos ayudan a detectar enfermedades tempranas."
+    }
+  ],
+  "herramientas": [
+    {
+      "id": "1",
+      "nombre": "ChatGPT",
+      "descripcion": "Asistente de texto con IA"
+    },
+    {
+      "id": "2",
+      "nombre": "Stable Diffusion",
+      "descripcion": "Generación de imágenes con IAs"
+    },
+    {
+      "id": "3359",
+      "nombre": "asdasdasd",
+      "descripcion": "asdasdasd"
+    }
+  ]
+}
