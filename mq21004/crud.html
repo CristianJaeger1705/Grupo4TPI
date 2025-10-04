@@ -1,0 +1,59 @@
+ <!-- crud.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Empresas - ERP</title>
+  <link rel="stylesheet" href="base.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html">Inicio</a>
+    <a href="acercade.html">Nosotros</a>
+    <a href="products.html">Productos</a>
+    <a href="services.html">Servicios</a>
+    <a href="crud.html">Empresas</a>
+  </nav>
+
+  <!-- Contenido -->
+  <div class="container">
+    <h2>Empresas interesadas en ERP</h2>
+
+    <form id="empresaForm">
+      <input type="text" id="nombre" placeholder="Nombre empresa" required>
+      <input type="text" id="sector" placeholder="Sector" required>
+      <input type="email" id="correo" placeholder="Correo" required>
+      <input type="text" id="telefono" placeholder="Teléfono" required>
+      <button type="submit">Registrar</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Sector</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tablaEmpresas"></tbody>
+    </table>
+
+    <!-- Imagen de clientes -->
+    <div class="clientes">
+      <h3>Nuestros grandes Beneficios </h3>
+      <img src="static/img/images.png" alt="Clientes ERP">
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 ERP Solutions - Todos los derechos reservados</p>
+  </footer>
+
+  <script src="static/js/crud.js"></script>
+</body>
+</html>
