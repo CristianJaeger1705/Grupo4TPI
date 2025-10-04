@@ -1,0 +1,32 @@
+{
+  "empresas": [
+    {
+      "nombre": "aaaaaa",
+      "sector": "aaaaaa",
+      "correo": "aaaaaa@aaaaa",
+      "telefono": "45555558",
+      "id": "994d"
+    },
+    {
+      "id": "3ba5",
+      "nombre": "bbbbbbbbb",
+      "sector": "bbbbbbb",
+      "correo": "bbbbb@bbbbbb",
+      "telefono": "11111111"
+    },
+    {
+      "id": "ded7",
+      "nombre": "jjjjjj",
+      "sector": "dddddd",
+      "correo": "dddd@uuuuu",
+      "telefono": "22222222"
+    },
+    {
+      "id": "7a14",
+      "nombre": "prueba",
+      "sector": "prueba1",
+      "correo": "prueba@gmail.com",
+      "telefono": "12347654"
+    }
+  ]
+}
