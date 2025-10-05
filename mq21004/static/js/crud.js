@@ -1,6 +1,7 @@
  // crud.js
 document.addEventListener("DOMContentLoaded", () => {
-    const apiURL = "http://172.22.168.64:3000/empresas"; // Cambia IP si es necesario
+    const apiURL = "/api/empresas";
+ // Cambia IP si es necesario
 
     const form = document.getElementById("empresaForm");
     const tabla = document.getElementById("tablaEmpresas");
