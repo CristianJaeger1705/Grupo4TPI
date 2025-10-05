@@ -7,14 +7,12 @@
     margin-bottom: 30px;
 }
 
-/* --- ESTILO PARA LISTAS DE ESPECIFICACIONES (similar a listaLibros) --- */
 #specs .spec-list li {
-    background: #f8f8f8; /* Un fondo ligeramente más claro que el contenedor principal */
+    background: #f8f8f8; 
     padding: 15px;
     margin-bottom: 10px;
     border-radius: 8px;
     box-shadow: 0 1px 5px rgba(0,0,0,0.05);
-    /* Borde izquierdo como acento principal (el azul de tu estilo original) */
     border-left: 4px solid #4a69bd; 
     transition: transform 0.2s, box-shadow 0.2s;
     font-family: 'Roboto', sans-serif;
@@ -26,10 +24,8 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* --- ESTILO PARA BOTONES (Adaptando tu estilo de botón fuerte) --- */
-/* Adaptado del estilo del formulario, usando el color de marca azul (#4a69bd) */
 .buttons .button {
-    color: white; /* Color de texto predeterminado para botones */
+    color: white; 
     padding: 15px 30px;
     border: none;
     border-radius: 8px;
@@ -40,27 +36,26 @@
     font-weight: 500;
 }
 
-/* Estilo para el botón primario (el primero, "Ver peliculas") */
+
 .buttons .button.is-light:first-child { 
     background: #4a69bd;
     color: white;
 }
 
 .buttons .button.is-light:first-child:hover {
-    background: #3c5ba0; /* Ligeramente más oscuro al pasar el cursor */
+    background: #3c5ba0; 
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* Estilo para el botón secundario (el segundo, "Ver reseñas") */
 .buttons .button:not(:first-child) {
     background: white;
-    color: #4a69bd; /* Texto azul */
-    border: 2px solid #4a69bd; /* Borde azul */
+    color: #4a69bd; 
+    border: 2px solid #4a69bd; 
 }
 
 .buttons .button:not(:first-child):hover {
-    background: #f0f3f9; /* Fondo muy claro al pasar el cursor */
+    background: #f0f3f9; 
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
