@@ -1,0 +1,12 @@
+{
+  "comandos": [
+    { "id": 1, "nombre": "SELECT", "tipo": "DML", "descripcion": "Consulta registros en una tabla" },
+    { "id": 2, "nombre": "INSERT", "tipo": "DML", "descripcion": "Agrega nuevos registros" }
+  ],
+  "bases": [
+  { "id": 1, "nombre": "MySQL", "tipo": "Relacional", "anio": 1995 },
+  { "id": 2, "nombre": "PostgreSQL", "tipo": "Relacional", "anio": 1996 },
+  { "id": 3, "nombre": "SQL Server", "tipo": "Relacional", "anio": 1989 },
+  { "id": 4, "nombre": "Oracle", "tipo": "Relacional", "anio": 1979 }
+]
+}
