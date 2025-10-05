@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+       <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Tipos de comandos SQL</title> 
+    <link rel="stylesheet" href="css/comandos.css">
+    </head>
+    <body>
+         <nav>
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="comandos.html">Tipos de Comandos</a></li>
+    <li><a href="motores.html">Motores SQL</a></li>
+    <li><a href="catalogo.html">Catálogo de Comandos</a></li>
+    <li><a href="recursos.html">Recursos</a></li>
+  </ul>
+</nav>
+        <h1>Comandos SQL esenciales</h1>
+        <p>
+                Los comandos SQL son las instrucciones que se usan para interactuar con una base de datos relacional. Se agrupan en diferentes categorías según la tarea que realizan. Nos enfocaremos en los comandos más comunes para gestionar los datos y la estructura de las tablas.
+            </p>
+        
+        <section id="dml">
+            <h2>DML (Lenguaje de Manipulación de Datos)</h2>
+            <p>Estos comandos permiten gestionar los datos dentro de las tablas.</p>
+
+            <div class="command-section">
+                <h3><code>SELECT</code></h3>
+                <p><b>Función:</b> Recupera datos de una o más tablas.</p>
+                <div class="code-block">
+                    <code>SELECT * FROM empleados;</code>
+                </div>
+                <p><b>Explicación:</b> Muestra todas las columnas de la tabla <code>empleados</code>.</p>
+            </div>
+
+            <div class="command-section">
+                <h3><code>INSERT INTO</code></h3>
+                <p><b>Función:</b> Inserta nuevos registros (filas) en una tabla.</p>
+                <div class="code-block">
+                    <code>INSERT INTO empleados (nombre, apellido) VALUES ('Juan', 'Pérez');</code>
+                </div>
+                <p><b>Explicación:</b> Añade un nuevo empleado con el nombre 'Juan' y el apellido 'Pérez'.</p>
+            </div>
+
+            <div class="command-section">
+                <h3><code>UPDATE</code></h3>
+                <p><b>Función:</b> Modifica los datos existentes en una tabla.</p>
+                <div class="code-block">
+                    <code>UPDATE empleados SET apellido = 'García' WHERE nombre = 'Juan';</code>
+                </div>
+                <p><b>Explicación:</b> Cambia el apellido del empleado 'Juan' a 'García'.</p>
+            </div>
+
+            <div class="command-section">
+                <h3><code>DELETE</code></h3>
+                <p><b>Función:</b> Elimina registros de una tabla.</p>
+                <div class="code-block">
+                    <code>DELETE FROM empleados WHERE nombre = 'Juan';</code>
+                </div>
+                <p><b>Explicación:</b> Borra de la tabla <code>empleados</code> el registro del empleado llamado 'Juan'.</p>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="ddl">
+            <h2>DDL (Lenguaje de Definición de Datos)</h2>
+            <p>Estos comandos se utilizan para definir la estructura de la base de datos y sus objetos.</p>
+
+            <div class="command-section">
+                <h3><code>CREATE TABLE</code></h3>
+                <p><b>Función:</b> Crea una nueva tabla en la base de datos.</p>
+                <div class="code-block">
+                    <code>CREATE TABLE productos (id INT, nombre VARCHAR(50), precio DECIMAL(10, 2));</code>
+                </div>
+                <p><b>Explicación:</b> Crea una tabla llamada <code>productos</code> con tres columnas: <code>id</code>, <code>nombre</code> y <code>precio</code>.</p>
+            </div>
+
+            <div class="command-section">
+                <h3><code>ALTER TABLE</code></h3>
+                <p><b>Función:</b> Modifica la estructura de una tabla existente.</p>
+                <div class="code-block">
+                    <code>ALTER TABLE productos ADD COLUMN stock INT;</code>
+                </div>
+                <p><b>Explicación:</b> Agrega una nueva columna llamada <code>stock</code> a la tabla <code>productos</code>.</p>
+            </div>
+
+            <div class="command-section">
+                <h3><code>DROP TABLE</code></h3>
+                <p><b>Función:</b> Elimina una tabla completa y todos los datos que contiene.</p>
+                <div class="code-block">
+                    <code>DROP TABLE productos;</code>
+                </div>
+                <p><b>Explicación:</b> Elimina la tabla <code>productos</code> de la base de datos.</p>
+            </div>
+        </section>
+    </div>
+
+    </body>
+    <html>

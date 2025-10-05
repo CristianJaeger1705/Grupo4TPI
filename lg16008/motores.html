@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Motores SQL</title>
+    <link rel="stylesheet" href="css/motores.css">
+    <script>
+      async function cargarBases() {
+        const res = await fetch("http://localhost:3000/bases");
+        const data = await res.json();
+        let tabla = "<table border='1'><tr><th>ID</th><th>Nombre</th><th>Tipo</th><th>Año</th><th>Acciones</th></tr>";
+        data.forEach(b => {
+          tabla += `<tr>
+            <td>${b.id}</td>
+            <td>${b.nombre}</td>
+            <td>${b.tipo}</td>
+            <td>${b.anio}</td>
+            <td>
+              <button onclick="editar(${b.id})">Editar</button>
+              <button onclick="borrar(${b.id})">Borrar</button>
+            </td>
+          </tr>`;
+        });
+        tabla += "</table>";
+        document.getElementById("bases").innerHTML = tabla;
+      }
+
+      async function agregar() {
+        const nombre = document.getElementById("nombre").value;
+        const tipo = document.getElementById("tipo").value;
+        const anio = document.getElementById("anio").value;
+
+        if (!nombre || !tipo || !anio) {
+          alert("Por favor completa todos los campos");
+          return;
+        }
+
+        await fetch("http://localhost:3000/bases", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({ nombre, tipo, anio })
+        });
+        document.getElementById("nombre").value = "";
+        document.getElementById("tipo").value = "";
+        document.getElementById("anio").value = "";
+        cargarBases();
+      }
+
+      async function borrar(id) {
+        await fetch(`http://localhost:3000/bases/${id}`, { method: "DELETE" });
+        cargarBases();
+      }
+
+      function editar(id) {
+        const nuevoNombre = prompt("Nuevo nombre:");
+        const nuevoTipo = prompt("Nuevo tipo:");
+        const nuevoAnio = prompt("Nuevo año:");
+        if (!nuevoNombre || !nuevoTipo || !nuevoAnio) {
+          alert("Todos los campos son obligatorios");
+          return;
+        }
+        fetch(`http://localhost:3000/bases/${id}`, {
+          method: "PUT",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({ nombre: nuevoNombre, tipo: nuevoTipo, anio: nuevoAnio })
+        }).then(() => cargarBases());
+      }
+
+      window.onload = cargarBases;
+    </script>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="comandos.html">Tipos de Comandos</a></li>
+      <li><a href="motores.html">Motores SQL</a></li>
+      <li><a href="catalogo.html">Catálogo de Comandos</a></li>
+      <li><a href="recursos.html">Recursos</a></li>
+    </ul>
+  </nav>
+
+  <h1>Motores SQL</h1>
+  <p>
+  A continuación se muestra un listado de los <strong>motores de bases de datos SQL más utilizados</strong>. 
+  Puedes interactuar con la tabla agregando nuevos motores, actualizando información existente 
+  o eliminando registros.
+</p>
+  <p>En esta sección puedes consultar, agregar, modificar o eliminar motores de bases de datos SQL.</p>
+
+  <h3>Agregar nuevo motor:</h3>
+  <input type="text" id="nombre" placeholder="Nombre">
+  <input type="text" id="tipo" placeholder="Tipo">
+  <input type="number" id="anio" placeholder="Año">
+  <button onclick="agregar()">Agregar</button>
+
+  <div id="bases"></div>
+</body>
+</html>

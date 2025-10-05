@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos SQL</title>
+   <link rel="stylesheet" href="css/recursos.css">
+</head>
+<body>
+     <nav>
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="comandos.html">Tipos de Comandos</a></li>
+    <li><a href="motores.html">Motores SQL</a></li>
+    <li><a href="catalogo.html">Catálogo de Comandos</a></li>
+    <li><a href="recursos.html">Recursos</a></li>
+  </ul>
+</nav>
+    <div class="container">
+            <h1>Recursos y Contacto</h1>
+            <p>
+                A continuación, encontrarás recursos útiles para profundizar en SQL y un formulario para contactarnos con tus dudas o comentarios.
+            </p>
+        <section id="recursos-externos">
+            <h2>Enlaces útiles</h2>
+            <ul class="resource-list">
+                <li>
+                    📘 <a href="https://dev.mysql.com/doc/" target="_blank">Documentación oficial de MySQL</a>
+                </li>
+                <li>
+                    📘 <a href="https://www.postgresql.org/docs/" target="_blank">Manual de PostgreSQL</a>
+                </li>
+                <li>
+                    📘 <a href="https://learn.microsoft.com/es-es/sql/sql-server/?view=sql-server-ver16" target="_blank">Tutoriales de Microsoft SQL Server</a>
+                </li>
+            </ul>
+        </section>
+
+        <section id="video-explicativo">
+            <h2>Video explicativo sobre SQL</h2>
+            <p>
+                Si prefieres un formato audiovisual, aquí tienes un video que explica los conceptos básicos de SQL de forma clara y concisa.
+            </p>
+            <div class="video-container">
+                <!-- Reemplaza el 'src' con el enlace de tu video de YouTube -->
+                <iframe 
+                    src="https://www.youtube.com/watch?v=Z91b7SbE8Eo" 
+                    frameborder="0" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <section id="formulario-contacto">
+            <h2>Formulario de contacto</h2>
+            <p>
+                ¿Tienes alguna pregunta o sugerencia? No dudes en contactarnos.
+            </p>
+            <form action="#" method="post">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" id="correo" name="correo" required>
+
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
+
+                <button type="submit">Enviar Mensaje</button>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

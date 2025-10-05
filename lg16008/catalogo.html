@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo de Comandos SQL</title>
+  <link rel="stylesheet" href="css/catalogo.css">
+  <script>
+    async function cargarComandos() {
+      const res = await fetch("http://localhost:3000/comandos");
+      const data = await res.json();
+      let tabla = "<table border='1'><tr><th>ID</th><th>Nombre</th><th>Tipo</th><th>Descripción</th><th>Acciones</th></tr>";
+      data.forEach(c => {
+        tabla += `<tr>
+          <td>${c.id}</td>
+          <td>${c.nombre}</td>
+          <td>${c.tipo}</td>
+          <td>${c.descripcion}</td>
+          <td>
+            <button onclick="editar(${c.id})">Editar</button>
+            <button onclick="borrar(${c.id})">Borrar</button>
+          </td>
+        </tr>`;
+      });
+      tabla += "</table>";
+      document.getElementById("comandos").innerHTML = tabla;
+    }
+
+    async function agregar() {
+      const nombre = document.getElementById("nombre").value;
+      const tipo = document.getElementById("tipo").value;
+      const descripcion = document.getElementById("descripcion").value;
+
+      await fetch("http://localhost:3000/comandos", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ nombre, tipo, descripcion })
+      });
+      cargarComandos();
+    }
+
+    async function borrar(id) {
+      await fetch(`http://localhost:3000/comandos/${id}`, { method: "DELETE" });
+      cargarComandos();
+    }
+
+    function editar(id) {
+      const nuevoNombre = prompt("Nuevo nombre:");
+      const nuevoTipo = prompt("Nuevo tipo:");
+      const nuevaDescripcion = prompt("Nueva descripción:");
+      fetch(`http://localhost:3000/comandos/${id}`, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ nombre: nuevoNombre, tipo: nuevoTipo, descripcion: nuevaDescripcion })
+      }).then(() => cargarComandos());
+    }
+
+    window.onload = cargarComandos;
+  </script>
+</head>
+<body>
+     <nav>
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="comandos.html">Tipos de Comandos</a></li>
+    <li><a href="motores.html">Motores SQL</a></li>
+    <li><a href="catalogo.html">Catálogo de Comandos</a></li>
+    <li><a href="recursos.html">Recursos</a></li>
+  </ul>
+</nav>
+  <h1>Catálogo de Comandos SQL</h1>
+
+  <h3>Agregar nuevo comando:</h3>
+  <input type="text" id="nombre" placeholder="Nombre">
+  <input type="text" id="tipo" placeholder="Tipo">
+  <input type="text" id="descripcion" placeholder="Descripción">
+  <button onclick="agregar()">Agregar</button>
+
+  <div id="comandos"></div>
+</body>
+</html>
