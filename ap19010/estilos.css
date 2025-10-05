@@ -1,0 +1,342 @@
+body {
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(0deg, #F0EFF6 0%, #EFEAFF 100%);
+  color: #333333;
+}
+
+h1 {
+  margin-top: 2rem;
+}
+h1.title, h2.subtitle, h3.title, h4 {
+    /* Oswald es audaz y condensado, ideal para encabezados y logos */
+    font-family: 'Oswald', Impact, sans-serif; 
+    font-weight: 700; /* Lo hace muy llamativo */
+    letter-spacing: 1px; /* Mejora la apariencia en mayúsculas */
+}
+
+.title i{
+  margin-right: 10px;
+}
+.navbar {
+  background-color: #e7ecf2; /* tono teal */
+  
+}
+
+.navbar a{
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  color: #202124;
+  border-radius: 6px;
+  transition: 
+    color 0.3s ease, 
+    background-color 0.3s ease, 
+    box-shadow 0.3s ease, 
+    transform 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar a:hover {
+  color: #007bff; /* azul elegante */
+  background-color: #dce3f0; /* fondo celeste muy suave */
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+.navbar i{
+  margin-right: 10px;
+}
+
+.navbar-end {
+    display: flex;
+    justify-content: center;
+    width: 100%; 
+}
+
+.navbar-item, .navbar-link {
+  color: #333333 !important;
+  font-weight: 500;
+}
+
+.navbar-item:hover {
+  background-color: rgba(0, 123, 255, 0.1) !important;
+  text-align: center;
+  color: #007bff !important;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+  transform: translateY(-2px);
+  transition: 
+    color 0.3s ease, 
+    background-color 0.3s ease, 
+    box-shadow 0.3s ease, 
+    transform 0.3s ease;
+  cursor: pointer;
+}
+
+/* Hero */
+.hero-image {
+  max-width: 1000px;
+  margin-bottom: 2rem;
+  
+}
+.hero .title {
+    color: #202124 !important; /* Un gris muy oscuro, casi negro */
+    margin-bottom: 0.5rem; /* Ajusta el espacio debajo del título */
+    font-size: 4.0rem;
+    padding-top: 1rem;
+}
+
+.hero .subtitle {
+    /* Lo hacemos más legible y no tan audaz como el título principal */
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif; 
+    font-weight: 500; /* Mediano */
+    font-size: 1.25rem;
+    color: #555555 !important;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* Secciones tipo card */
+.section-card {
+  margin-top: 2rem;
+  padding: 3rem 1.5rem;
+}
+
+.spec-list {
+  list-style: none;
+  padding: 0;
+  columns: 2;
+}
+
+.spec-list li {
+  margin-bottom: 0.75rem;
+}
+
+figure img {
+  border-radius: 12px;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f1f3f4;
+  color: #5f6368;
+}
+
+/* Estilos para contenedores de sección y galería */
+.section-card, #gallery .container {
+    background: #F8F8F8;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+/* --- ESTILO PARA LISTAS DE ESPECIFICACIONES (similar a listaLibros) --- */
+#specs .spec-list li {
+    background: #f8f8f8; /* Un fondo ligeramente más claro que el contenedor principal */
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+    /* Borde izquierdo como acento principal (el azul de tu estilo original) */
+    border-left: 4px solid #4a69bd; 
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.05em;
+}
+
+#specs .spec-list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* --- ESTILO PARA BOTONES (Adaptando tu estilo de botón fuerte) --- */
+/* Adaptado del estilo del formulario, usando el color de marca azul (#4a69bd) */
+.buttons .button {
+    color: white; /* Color de texto predeterminado para botones */
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* Estilo para el botón primario (el primero, "Ver peliculas") */
+.buttons .button.is-light:first-child { 
+    background: #4a69bd;
+    color: white;
+}
+
+.buttons .button.is-light:first-child:hover {
+    background: #3c5ba0; /* Ligeramente más oscuro al pasar el cursor */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Estilo para el botón secundario (el segundo, "Ver reseñas") */
+.buttons .button:not(:first-child) {
+    background: white;
+    color: #4a69bd; /* Texto azul */
+    border: 2px solid #4a69bd; /* Borde azul */
+}
+
+.buttons .button:not(:first-child):hover {
+    background: #f0f3f9; /* Fondo muy claro al pasar el cursor */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* --- NUEVAS MODIFICACIONES PARA EL FORMULARIO --- */
+
+/* Centrar totalmente el formulario */
+#gallery form {
+  width: 420px; /* ancho fijo */
+  margin: 0 auto; /* centrado horizontal */
+  display: block;
+}
+
+/* Cada campo ocupa todo el ancho del formulario */
+#gallery form .field {
+  width: 100%;
+  margin-bottom: 1.2rem;
+  text-align: left;
+}
+
+/* Labels con color oscuro */
+#gallery form .field label.label {
+  color: #202124;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+/* Inputs con fondo oscuro y texto claro */
+/* Inputs, Textareas y Selects con fondo uniforme y texto legible */
+#gallery form .field input.input, 
+#gallery form .field textarea.textarea,
+#gallery form .field .select select {
+  width: 100%;
+  background-color: #e7eaee; /* Fondo claro deseado */
+  color: #333333; /* Texto legible */
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Efecto focus para inputs */
+/* Efecto focus para todos los campos del formulario */
+#gallery form .field input.input:focus,
+#gallery form .field textarea.textarea:focus,
+#gallery form .field .select select:focus {
+  outline: none;
+  background-color: #efeff0; /* Fondo más claro al enfocar */
+  box-shadow: 0 0 5px #007bff;
+  color: #333333;
+}
+
+/* Botón centrado y con margen */
+#gallery form button.button {
+  display: block;
+  margin: 1.5rem auto 0 auto;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+}
+
+/* Título centrado y visible */
+#gallery h3.title {
+  color: #333333;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.movie-card-custom {
+    /* Eliminar max-height para que el alto sea definido por el contenido de la imagen */
+    /* ... otros estilos ... */
+    display: flex;
+    flex-direction: column;
+    background-color: #9cabc7;
+}
+
+.custom-image-container {
+    /* ELIMINA MAX-HEIGHT DE AQUÍ */
+    overflow: hidden;
+}
+
+.poster-image {
+    /* Volvemos a 'cover' o 'unset' para mantener la relación de aspecto Bulma */
+    object-fit: cover; 
+    width: 100%;
+    height: auto; /* Dejamos que la altura se ajuste automáticamente */
+}
+
+.section-card h3.title {
+    color: #333333 !important; /* Fuerza el color a negro/gris oscuro */
+}
+
+.card-content p {
+    color: #333333; /* Color para el texto informativo */
+}
+
+/* --- ESTILOS PARA VALORACIÓN POR ESTRELLAS --- */
+
+.rating-stars {
+  /* Hace que el 5 esté a la izquierda (visual) y que se comporten como una fila */
+  display: flex;
+  flex-direction: row-reverse; 
+  /* Alinea las estrellas a la izquierda */
+  justify-content: flex-end; 
+  padding-top: 5px; 
+}
+
+/* Oculta los elementos de radio que gestionan el valor */
+.rating-stars input {
+  display: none; 
+}
+
+/* Estilo base de cada estrella */
+.rating-stars label {
+  font-size: 2rem; /* Tamaño de la estrella */
+  color: #ccc; /* Color gris (sin seleccionar) */
+  cursor: pointer;
+  padding: 0 3px;
+  transition: color 0.2s;
+  /* El font-family 'Oswald' hace que el símbolo ★ se vea raro, forzamos un font genérico */
+  font-family: Arial, sans-serif; 
+}
+
+/* Efecto hover: cuando pasas el ratón, ilumina la estrella actual y todas las anteriores (~) */
+.rating-stars label:hover,
+.rating-stars label:hover ~ label {
+  color: #ffc700; /* Color dorado al pasar el ratón */
+}
+
+/* Estado seleccionado: cuando un radio button está checked, ilumina esa estrella y las anteriores (por ~) */
+.rating-stars input:checked ~ label {
+  color: #ffc700;
+}
+/* Sobreescribe el color de Bulma 'has-text-info' para la reseña */
+.movie-card-custom .card-content p.has-text-info {
+    color: #333333 !important; /* Aplica tu color base negro/gris oscuro */
+}
+
+/* Opcional: Si quieres que el nombre de la película (el <strong>) resalte un poco, puedes darle un color de acento, por ejemplo, el azul de tus botones */
+.movie-card-custom .card-content p.has-text-info strong {
+    color: #526aab !important;
+}

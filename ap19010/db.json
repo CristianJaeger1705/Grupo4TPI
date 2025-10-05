@@ -1,0 +1,78 @@
+{
+  "peliculas": [
+    {
+      "id": 1,
+      "nombre": "El abogado del diablo",
+      "director": "Taylor Hackford",
+      "genero": "Drama",
+      "anio": 1997,
+      "imagen": "https://www.themoviedb.org/t/p/w1280/5ZzBGpxy55OQzHxKVY11IpY6a0o.jpg"
+    },
+    {
+      "id": 2,
+      "nombre": "Interstellar", 
+      "director": "Christopher Nolan", 
+      "genero": "Ciencia Ficción",
+      "anio": 2014,
+      "imagen": "https://www.themoviedb.org/t/p/w1280/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
+    },
+    {
+      "id": 3,
+      "nombre": "Nosferatu", 
+      "director": "Robert Eggers", 
+      "genero": "Horror",
+      "anio": 2024,
+      "imagen": "https://www.themoviedb.org/t/p/w1280/5qGIxdEO841C0tdY8vOdLoRVrr0.jpg"
+    },
+    {
+      "id": 4,
+      "nombre": "Abigail", 
+      "director": "Matt Bettinelli-Olpin y Tyler Gillett", 
+      "genero": "Thriller",
+      "anio": 2024,
+      "imagen": "https://www.themoviedb.org/t/p/w1280/5gKKSoD3iezjoL7YqZONjmyAiRA.jpg"
+    },
+    {
+      "id": 5,
+      "nombre": "Robot salvaje", 
+      "director": "Chris Sanders", 
+      "genero": "Animación",
+      "anio": 2024,
+      "imagen": "https://www.themoviedb.org/t/p/w1280/wTnV3PCVW5O92JMrFvvrRcV39RU.jpg"
+    },
+    {
+      "id": 6,
+      "nombre": "El Club de Compradores de Dallas ", 
+      "director": "Jean-Marc Vallée", 
+      "genero": "Historia",
+      "anio": 2013,
+      "imagen": "https://www.themoviedb.org/t/p/w1280/7Fdh7gUq3plvQqxRbNYhWvDABXA.jpg"
+    }
+  ],
+  "resenas": [
+    {
+      "id": 1,
+      "nombre": "Carlos",
+      "peliculaId": 1,
+      "puntuacion": 5,
+      "comentarioCorto": "Una joya del cine moderno",
+      "texto": "Un muy buen clásico que vale la pena ver. La actuación de Al Pacino es magistral y la trama te mantiene al borde del asiento. Una película que combina drama y suspenso de manera excepcional."
+    },
+    {
+      "id": 2,
+      "nombre": "Vanessa",
+      "peliculaId": 4,
+      "puntuacion": 3,
+      "comentarioCorto": "Interesante pero predecible",
+      "texto": "La película tiene un buen ritmo y algunas escenas impactantes, pero la trama es bastante predecible. Aun así, la actuación del elenco principal es sólida y la dirección es competente."
+    },
+    {
+      "id": 3,
+      "nombre": "María",
+      "peliculaId": 5,
+      "puntuacion": 5,
+      "comentarioCorto": "Animación encantadora y divertida",
+      "texto": "Una película animada que realmente captura la esencia de la aventura y la amistad. Los personajes son adorables y la historia es tanto entretenida como conmovedora. Ideal para todas las edades."
+    }
+  ]
+}
