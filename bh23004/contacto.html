@@ -6,12 +6,65 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <h1>Contáctanos</h1>
-    <form>
-      <label>Nombre: <input type="text" /></label><br />
-      <label>Email: <input type="email" /></label><br />
-      <label>Mensaje: <textarea></textarea></label><br />
-      <button type="submit">Enviar</button>
-    </form>
+    <header>
+      <h1>Contacto</h1>
+      <nav>
+        <a href="./">Inicio</a>
+        <a href="./noticias.html">Noticias</a>
+        <a href="./herramientas.html">Herramientas</a>
+        <a href="./cursos.html">Cursos</a>
+        <a href="./contacto.html">Contacto</a>
+      </nav>
+    </header>
+    <main>
+      <h2>Envíanos un mensaje</h2>
+      <form class="contact-form">
+        <label
+          >Nombre:
+          <input
+            type="text"
+            name="nombre"
+            placeholder="Tu nombre completo"
+            required
+          />
+        </label>
+        <label
+          >Email:
+          <input
+            type="email"
+            name="email"
+            placeholder="correo@ejemplo.com"
+            required
+          />
+        </label>
+        <label
+          >Asunto:
+          <input
+            type="text"
+            name="asunto"
+            placeholder="Tema del mensaje"
+            required
+          />
+        </label>
+        <label
+          >Mensaje:
+          <textarea
+            name="mensaje"
+            placeholder="Escribe aquí tu mensaje..."
+            required
+          ></textarea>
+        </label>
+        <button type="submit">Enviar</button>
+      </form>
+      <img
+        src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?w=800"
+        alt="Contacto"
+        class="wide-img"
+      />
+    </main>
+    <footer>
+      <p>&copy; 2025 Portal IA</p>
+    </footer>
+    <script src="./js/app.js" defer></script>
   </body>
 </html>
