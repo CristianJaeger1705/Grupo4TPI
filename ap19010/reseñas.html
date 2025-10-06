@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineXpress - Reseñas</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="componentes.css">
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-menu">
+            <div class="navbar-end">
+                <a href="index.html"><i class="fas fa-house"></i> Inicio</a>
+                <a href="peliculas.html"><i class="fas fa-film"></i> Películas</a>
+                <a href="reseñas.html"><i class="fas fa-message"></i> Reseñas</a>
+                <a href="contacto.html"><i class="fas fa-user"></i> Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container has-text-centered">
+            <h2 class="title"><i class="fas fa-message"></i> Gestión de Reseñas</h2>
+            <p>Comparte tus opiniones sobre nuestras películas.</p>
+        </div>
+    </section>
+
+    <section id="gallery" class="section">
+        <div class="container is-card-box">
+            <h3 class="title is-3 has-text-centered" id="formTitle">⭐ Agregar Nueva Reseña</h3>
+            
+            <form id="resenaForm">
+                <input type="hidden" id="resenaId"> 
+
+                <div class="columns is-multiline is-centered">
+                    
+                    <div class="column is-full">
+                        <div class="field">
+                            <label class="label" for="nombreResenador">Tu Nombre:</label>
+                            <input class="input" type="text" id="nombreResenador" required>
+                        </div>
+                    </div>
+
+                    <div class="column is-half">
+                        <div class="field">
+                            <label class="label" for="peliculaId">Selecciona la Película:</label>
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select id="peliculaId" required>
+                                        <option value="">Cargando películas...</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-half">
+                        <div class="field">
+                            <label class="label" for="puntuacion">Valoración (Estrellas):</label>
+                            <div class="control">
+                                <div class="rating-stars">
+                                    <input type="radio" id="star5" name="puntuacion" value="5" required><label for="star5" title="5 estrellas">★</label>
+                                    <input type="radio" id="star4" name="puntuacion" value="4"><label for="star4" title="4 estrellas">★</label>
+                                    <input type="radio" id="star3" name="puntuacion" value="3"><label for="star3" title="3 estrellas">★</label>
+                                    <input type="radio" id="star2" name="puntuacion" value="2"><label for="star2" title="2 estrellas">★</label>
+                                    <input type="radio" id="star1" name="puntuacion" value="1"><label for="star1" title="1 estrella">★</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-full">
+                        <div class="field">
+                            <label class="label" for="comentarioCorto">Comentario Corto (Máx. 50 caracteres):</label>
+                            <input class="input" type="text" id="comentarioCorto" maxlength="50" required>
+                        </div>
+                    </div>
+
+                    <div class="column is-full">
+                        <div class="field">
+                            <label class="label" for="textoResena">Reseña Completa:</label>
+                            <div class="control">
+                                <textarea class="textarea" id="textoResena" rows="4" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-full has-text-centered">
+                        <button type="submit" class="button is-primary is-large">Guardar Reseña</button>
+                        <button type="button" class="button is-light is-large" id="cancelBtn" style="display:none;">Cancelar Edición</button>
+                    </div>
+                </div> 
+            </form>
+        </div>
+    </section>
+
+    <section class="section-card">
+        <h3 class="title is-3 has-text-centered">Reseñas agregadas</h3>
+        <div class="columns is-multiline is-centered" id="resenasGrid">
+            </div>
+    </section>
+
+    <footer>
+    <p>&copy; 2025 CineXpress - Todos los derechos reservados</p>
+  </footer>
+
+    <script>
+        // --- CONSTANTES API ---
+        const RESENAS_API_URL = 'http://localhost:3000/resenas'; 
+        const MOVIES_API_URL = 'http://localhost:3000/peliculas';
+        let editingId = null; // Para rastrear si estamos editando
+        let allMovies = []; // Almacenar películas para lookup
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPeliculasForSelect();
+            loadResenas();
+        });
+
+        // ------------------------------------
+        // LÓGICA DE LA INTERFAZ
+        // ------------------------------------
+
+        // 1. Cargar películas para el SELECT
+        async function loadPeliculasForSelect() {
+            const select = document.getElementById('peliculaId');
+            select.innerHTML = ''; // Limpiar opciones
+
+            try {
+                const response = await fetch(MOVIES_API_URL);
+                if (!response.ok) throw new Error('Fallo al cargar películas.');
+                allMovies = await response.json(); 
+
+                if (allMovies.length === 0) {
+                    select.innerHTML = '<option value="">No hay películas agregadas</option>';
+                    return;
+                }
+                
+                select.innerHTML = '<option value="" disabled selected>Selecciona una película</option>';
+                allMovies.forEach(movie => {
+                    const option = document.createElement('option');
+                    option.value = movie.id;
+                    option.textContent = movie.nombre || movie.titulo;
+                    select.appendChild(option);
+                });
+
+            } catch (error) {
+                console.error('Error al cargar películas para el selector:', error);
+                select.innerHTML = '<option value="">Error al cargar (Ver consola)</option>';
+            }
+        }
+
+        // 2. Renderizar Estrellas (Función de Utilidad)
+        function generateStarHTML(puntuacion) {
+            const fullStar = '<span style="color:#ffc700;">★</span>';
+            const emptyStar = '<span style="color:#ccc;">★</span>';
+            return fullStar.repeat(puntuacion) + emptyStar.repeat(5 - puntuacion);
+        }
+
+        // 3. Renderizar Reseñas
+        function renderResenas(resenas) {
+            const grid = document.getElementById('resenasGrid');
+            if (!grid) return;
+            
+            // Mapeo de películas para buscar el nombre rápidamente
+            const moviesMap = allMovies.reduce((acc, movie) => {
+                acc[movie.id] = movie.nombre || movie.titulo;
+                return acc;
+            }, {});
+
+            grid.innerHTML = resenas.map(r => `
+                <div class="column is-half-tablet is-one-third-desktop">
+                    <div class="card movie-card-custom" style="background-color: #fcfcfc; border: 1px solid #ddd;">
+                        <div class="card-content">
+                            <h3 class="title is-5">${r.comentarioCorto}</h3> 
+                            
+                            <p class="subtitle is-6 has-text-info">
+                                Reseña para: <strong>${moviesMap[r.peliculaId] || 'Película Desconocida'}</strong>
+                            </p>
+                            
+                            <div class="mb-2">
+                                ${generateStarHTML(r.puntuacion)}
+                            </div>
+                            
+                            <p class="is-size-7 mb-3">${r.texto}</p>
+                            
+                            <p class="is-size-7 has-text-weight-bold">
+                                Por: ${r.nombre}
+                            </p>
+                            
+                            <div class="mt-4 is-flex is-justify-content-center custom-button-group">
+                                <button class="button is-small is-info" onclick="editResena(${r.id})">Editar</button>
+                                <button class="button is-small is-danger" onclick="deleteResena(${r.id})">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // ------------------------------------
+        // CRUD: READ (Cargar Reseñas)
+        // ------------------------------------
+        async function loadResenas() {
+            try {
+                // Primero asegura que las películas estén cargadas para el lookup
+                if (allMovies.length === 0) {
+                    await loadPeliculasForSelect(); 
+                }
+
+                const response = await fetch(RESENAS_API_URL);
+                if (!response.ok) throw new Error('Respuesta de red no fue ok');
+                
+                const resenas = await response.json();
+                renderResenas(resenas);
+
+            } catch (error) {
+                console.error('Error al cargar reseñas:', error);
+                document.getElementById('resenasGrid').innerHTML = '<p class="has-text-danger">¡Error al conectar con la API de reseñas!</p>';
+            }
+        }
+        
+        // ------------------------------------
+        // CRUD: CREATE/UPDATE (Guardar)
+        // ------------------------------------
+        document.getElementById('resenaForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const puntuacion = parseInt(form.puntuacion.value);
+
+            const resenaData = {
+                nombre: form.nombreResenador.value,
+                peliculaId: parseInt(form.peliculaId.value),
+                puntuacion: puntuacion,
+                comentarioCorto: form.comentarioCorto.value,
+                texto: form.textoResena.value,
+            };
+
+            try {
+                if (editingId) {
+                    await updateResena(editingId, resenaData);
+                } else {
+                    await createResena(resenaData);
+                }
+                resetForm();
+                loadResenas(); 
+            } catch (error) {
+                alert('Error al guardar/actualizar la reseña: ' + error.message);
+            }
+        });
+
+        async function createResena(resena) {
+            const response = await fetch(RESENAS_API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(resena)
+            });
+            if (!response.ok) throw new Error('Fallo la creación en el servidor.');
+        }
+
+        async function updateResena(id, resena) {
+            const response = await fetch(`${RESENAS_API_URL}/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(resena)
+            });
+            if (!response.ok) throw new Error('Fallo la actualización en el servidor.');
+        }
+
+        // ------------------------------------
+        // CRUD: DELETE (Eliminar)
+        // ------------------------------------
+        async function deleteResena(id) {
+            if (!confirm('¿Estás seguro de eliminar esta reseña?')) return;
+            try {
+                const response = await fetch(`${RESENAS_API_URL}/${id}`, {
+                    method: 'DELETE'
+                });
+                if (!response.ok) throw new Error('Fallo la eliminación en el servidor.');
+                loadResenas(); 
+            } catch (error) {
+                alert('Error al eliminar: ' + error.message);
+            }
+        }
+
+        // ------------------------------------
+        // INTERFAZ DE EDICIÓN
+        // ------------------------------------
+
+        // Carga los datos de la reseña al formulario para editar
+        async function editResena(id) {
+            try {
+                const response = await fetch(`${RESENAS_API_URL}/${id}`);
+                const resena = await response.json();
+                
+                // Llenar el formulario con los datos
+                document.getElementById('nombreResenador').value = resena.nombre;
+                document.getElementById('peliculaId').value = resena.peliculaId;
+                document.getElementById('comentarioCorto').value = resena.comentarioCorto;
+                document.getElementById('textoResena').value = resena.texto;
+                
+                // Seleccionar la estrella correcta
+                document.querySelector(`input[name="puntuacion"][value="${resena.puntuacion}"]`).checked = true;
+                
+                // Cambiar el estado del formulario a 'Editar'
+                editingId = id;
+                document.getElementById('formTitle').textContent = 'Editar Reseña (ID: ' + id + ')';
+                document.getElementById('cancelBtn').style.display = 'inline-block';
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch(error) {
+                alert('Error al cargar datos para editar: ' + error.message);
+            }
+        }
+
+        // Limpia el formulario y regresa al estado de 'Crear'
+        document.getElementById('cancelBtn').addEventListener('click', resetForm);
+        
+        function resetForm() {
+            document.getElementById('resenaForm').reset();
+            // Asegurar que ninguna estrella quede seleccionada
+            document.querySelector(`input[name="puntuacion"]:checked`) && 
+            (document.querySelector(`input[name="puntuacion"]:checked`).checked = false);
+
+            editingId = null;
+            document.getElementById('formTitle').textContent = '⭐ Agregar Nueva Reseña';
+            document.getElementById('cancelBtn').style.display = 'none';
+        }
+
+    </script>
+</body>
+</html>

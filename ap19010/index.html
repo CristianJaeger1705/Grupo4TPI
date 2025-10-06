@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CineXpress </title>
+
+  <!-- Bulma -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="estilos.css">
+  <link rel="stylesheet" href="componentes.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-menu">
+      <div class="navbar-end">
+        <a href="index.html"><i class="fas fa-house"></i> Inicio</a>
+        <a href="peliculas.html"><i class="fas fa-film"></i> Peliculas</a>
+        <a href="reseñas.html"><i class="fas fa-message"></i> Reseñas</a>
+        <a href="contacto.html"><i class="fas fa-user"></i> Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container has-text-centered">
+      <h1 class="title"><i class="fas fa-film"></i> CineXpress</h1>
+      <p>Tu sitio de peliculas y reseñas</p>
+      <div class="buttons is-centered mt-4">
+        <a class="button is-light" href="#specs">Ver peliculas</a>
+        <button class="button is-light" id="toggleTheme">Ver reseñas</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Galería -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <h3 class="title is-3 has-text-centered">🎬 Películas Destacadas</h3>
+      
+      <div class="columns is-multiline is-centered" id="latestMoviesGrid">
+        </div>
+      
+      <div class="has-text-centered mt-5">
+        <a href="peliculas.html" class="button is-large is-link">Ver Catálogo Completo</a>
+      </div>
+    </div>
+</section>
+
+  <footer>
+    <p>&copy; 2025 CineXpress - Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    // Función para cargar y renderizar las películas en la página principal
+function loadLatestMovies() {
+    const grid = document.getElementById('latestMoviesGrid');
+    if (!grid) return; // Sale si no encuentra el ID (solo debe correr en index.html)
+
+    // Ajusta la URL si tu json-server corre en otro puerto
+    fetch('http://localhost:3000/peliculas') 
+        .then(response => response.json())
+        .then(peliculas => {
+            // Tomamos las últimas 4 películas agregadas y las mostramos (reversed)
+            const latestMovies = peliculas.slice(-4).reverse(); 
+
+            grid.innerHTML = latestMovies.map(p => `
+                <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+                    <div class="card movie-card-custom">
+                        
+                        <div class="card-image custom-image-container p-3">
+                            <figure class="image is-4by5">
+                                <img src="${p.imagen}" 
+                                     alt="Poster de ${p.nombre || p.titulo}" 
+                                     class="poster-image" 
+                                     onerror="this.onerror=null;this.src='https://via.placeholder.com/300x450.png?text=No+Image';">
+                            </figure>
+                        </div>
+
+                        <div class="card-content">
+                            <h4 class="title is-6">${p.nombre || p.titulo}</h4> 
+                            <p class="is-size-7"><strong>Año:</strong> ${p.anio}</p>
+                            <p class="is-size-7"><strong>Director:</strong> ${p.director || 'N/A'}</p>
+                            <p class="is-size-7"><strong>Género:</strong> ${p.genero}</p>
+                            </div>
+                    </div>
+                </div>
+            `).join('');
+        })
+        .catch(error => {
+            console.error('Error al cargar las películas:', error);
+            grid.innerHTML = `<p class="has-text-danger has-text-centered">No se pudieron cargar las películas. Asegúrate de que JSON-Server esté corriendo.</p>`;
+        });
+}
+
+window.addEventListener('load', loadLatestMovies);
+  </script>
+
+</body>
+</html>

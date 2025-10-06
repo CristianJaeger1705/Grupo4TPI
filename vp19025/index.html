@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Digital - Gestor de Libros</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header Mejorado -->
+    <header class="cabecera">
+        <div class="contenedor-cabecera">
+            <div class="logo-biblioteca">
+                <h1>📚 Biblioteca Digital</h1>
+                <p>Gestiona tu colección personal de libros</p>
+            </div>
+            <nav class="navegacion-principal">
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="catalogo">Catálogo</a></li>
+                    <li><a href="">Agregar Libro</a></li>
+                    <li><a href="">Buscar</a></li>
+                    <li><a href="">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contenedor-principal">
+        <!-- Sección de Formulario -->
+        <section id="seccion-formulario" class="seccion-formulario">
+            <h2 id="titulo-formulario">📖 Agregar Nuevo Libro en bd</h2>
+            <form id="formulario-libro" class="formulario-libro">
+                <input type="hidden" id="id-libro" value="">
+                
+                <div class="fila-formulario">
+                    <div class="campo-grupo">
+                        <label for="titulo">Título del Libro *</label>
+                        <input type="text" id="titulo" required placeholder="Ej: Cien años de soledad">
+                    </div>
+                    <div class="campo-grupo">
+                        <label for="autor">Autor *</label>
+                        <input type="text" id="autor" required placeholder="Ej: Gabriel García Márquez">
+                    </div>
+                </div>
+
+                <div class="fila-formulario">
+                    <div class="campo-grupo">
+                        <label for="precio">Precio ($) *</label>
+                        <input type="number" id="precio" step="0.01" min="0" required placeholder="0.00">
+                    </div>
+                    <div class="campo-grupo">
+                        <label for="genero">Género Literario</label>
+                        <select id="genero">
+                            <option value="ficcion">📖 Ficción</option>
+                            <option value="no-ficcion">📚 No Ficción</option>
+                            <option value="ciencia">🔬 Ciencia</option>
+                            <option value="historia">🏛️ Historia</option>
+                            <option value="fantasia">🐉 Fantasía</option>
+                            <option value="romance">💖 Romance</option>
+                            <option value="terror">👻 Terror</option>
+                            <option value="biografia">👤 Biografía</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="fila-formulario">
+                    <div class="campo-grupo ancho-completo">
+                        <label for="portada">Portada (URL)</label>
+                        <input type="url" id="portada" placeholder="https://ejemplo.com/portada.jpg">
+                    </div>
+                </div>
+
+                <div class="fila-formulario">
+                    <div class="campo-grupo ancho-completo">
+                        <label for="descripcion">Sinopsis</label>
+                        <textarea id="descripcion" rows="4" placeholder="Breve descripción del libro..."></textarea>
+                    </div>
+                </div>
+
+                <div class="fila-formulario botones-accion">
+                    <button type="submit" id="boton-guardar" class="boton-primario">💾 Guardar Libro</button>
+                    <button type="button" id="boton-cancelar" class="boton-secundario">❌ Cancelar</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Sección de Filtros -->
+        <section id="seccion-controles" class="seccion-controles">
+            <div class="filtros-genero">
+                <h3>🔍 Filtrar por Género</h3>
+                <div class="checkboxes-genero">
+                    <label><input type="checkbox" id="filtro-ficcion" checked> 📖 Ficción</label>
+                    <label><input type="checkbox" id="filtro-no-ficcion" checked> 📚 No Ficción</label>
+                    <label><input type="checkbox" id="filtro-ciencia" checked> 🔬 Ciencia</label>
+                    <label><input type="checkbox" id="filtro-historia" checked> 🏛️ Historia</label>
+                    <label><input type="checkbox" id="filtro-fantasia" checked> 🐉 Fantasía</label>
+                    <label><input type="checkbox" id="filtro-romance" checked> 💖 Romance</label>
+                    <label><input type="checkbox" id="filtro-terror" checked> 👻 Terror</label>
+                    <label><input type="checkbox" id="filtro-biografia" checked> 👤 Biografía</label>
+                </div>
+            </div>
+
+            <div class="consejos-uso">
+                <h3>💡 Consejos de Uso</h3>
+                <ol>
+                    <li>Haz clic en la portada para verla en tamaño completo</li>
+                    <li>Ordena por precio haciendo clic en el encabezado "Precio"</li>
+                    <li>Usa los filtros para encontrar libros específicos</li>
+                    <li>Mantén actualizada tu biblioteca regularmente</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Sección de Lista de Libros -->
+        <section id="seccion-lista" class="seccion-lista">
+            <h2>📚 Tu Biblioteca</h2>
+            <div class="contador-libros">
+                <span id="contador-total">Total: 0 libros</span>
+            </div>
+            
+            <div class="tabla-contenedor">
+                <table id="tabla-libros">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Portada</th>
+                            <th id="encabezado-precio">Precio ($)</th>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Sinopsis</th>
+                            <th>Género</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo-tabla">
+                        <!-- Los libros se cargarán aquí dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Mejorado -->
+    <footer class="pie-pagina">
+        <div class="contenedor-pie">
+            <div class="secciones-pie">
+                <div class="seccion-pie">
+                    <h3>📖 Sobre Nosotros</h3>
+                    <p>Biblioteca Digital es tu plataforma para gestionar y organizar tu colección personal de libros. Mantén tu biblioteca siempre actualizada.</p>
+                </div>
+                
+                <div class="seccion-pie">
+                    <h3>📞 Contacto</h3>
+                    <p>✉️ info@bibliotecadigital.com</p>
+                    <p>📱 +34 912 345 678</p>
+                    <p>🏛️ Calle de la Lectura, 123, Madrid</p>
+                </div>
+                
+                <div class="seccion-pie">
+                    <h3>🔗 Enlaces Rápidos</h3>
+                    <p><a href="#catalogo">Ver Catálogo</a></p>
+                    <p><a href="#agregar">Agregar Libro</a></p>
+                    <p><a href="#buscar">Buscar Libros</a></p>
+                    <p><a href="#ayuda">Ayuda</a></p>
+                </div>
+                
+                <div class="seccion-pie">
+                    <h3>⚙️ Configuración</h3>
+                    <p>Para usar esta aplicación, ejecuta:</p>
+                    <code>json-server --watch libros.json --port 3000</code>
+                </div>
+            </div>
+            
+            <div class="pie-inferior">
+                <p>&copy; 2024 Biblioteca Digital. Todos los derechos reservados.</p>
+                <p>Gestiona tu pasión por la lectura de manera digital</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/bibliotec.js"></script>
+</body>
+</html>

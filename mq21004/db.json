@@ -1,0 +1,18 @@
+{
+  "empresas": [
+    {
+      "nombre": "prueba",
+      "sector": "prueba2",
+      "correo": "prueba@gmail.com",
+      "telefono": "12347654",
+      "id": "7a14"
+    },
+    {
+      "id": "b76a",
+      "nombre": "santa catarina",
+      "sector": "alimentos",
+      "correo": "bbbbb@bbb",
+      "telefono": "22222222"
+    }
+  ]
+}

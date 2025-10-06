@@ -1,0 +1,62 @@
+
+.section-card, #gallery .container {
+    background:#c9d6ee; /*#c9d6ee*/
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+#specs .spec-list li {
+    background: #f8f8f8; 
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+    border-left: 4px solid #4a69bd; 
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.05em;
+}
+
+#specs .spec-list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.buttons .button {
+    color: white; 
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+
+.buttons .button.is-light:first-child { 
+    background: #4a69bd;
+    color: white;
+}
+
+.buttons .button.is-light:first-child:hover {
+    background: #3c5ba0; 
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.buttons .button:not(:first-child) {
+    background: white;
+    color: #4a69bd; 
+    border: 2px solid #4a69bd; 
+}
+
+.buttons .button:not(:first-child):hover {
+    background: #f0f3f9; 
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+

@@ -1,0 +1,49 @@
+{
+  "libros": [
+    {
+      "titulo": "Cien años de soledad",
+      "autor": "Gabriel García Márquez",
+      "precio": 12.58,
+      "descripcion": "Una obra maestra del realismo mágico que narra la historia de la familia Buendía en el pueblo ficticio de Macondo.",
+      "portada": "https://images.pexels.com/photos/1275235/pexels-photo-1275235.jpeg",
+      "genero": "ficcion",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "titulo": "Breves respuestas a las grandes preguntas",
+      "autor": "Stephen Hawking",
+      "precio": 18.99,
+      "descripcion": "El último libro del famoso físico teórico, donde aborda las grandes cuestiones de nuestro tiempo.",
+      "portada": "https://images.pexels.com/photos/1370298/pexels-photo-1370298.jpeg",
+      "genero": "ciencia"
+    },
+    {
+      "id": "3",
+      "titulo": "Sapiens: De animales a dioses",
+      "autor": "Yuval Noah Harari",
+      "precio": 22.5,
+      "descripcion": "Un recorrido por la historia de la humanidad, desde la evolución del Homo sapiens hasta las revoluciones tecnológicas.",
+      "portada": "https://images.pexels.com/photos/256541/pexels-photo-256541.jpeg",
+      "genero": "historia"
+    },
+    {
+      "id": "4",
+      "titulo": "El nombre del viento",
+      "autor": "Patrick Rothfuss",
+      "precio": 15.75,
+      "descripcion": "La crónica de Kvothe, un personaje legendario que relata la verdad sobre su propia historia.",
+      "portada": "https://images.pexels.com/photos/1370295/pexels-photo-1370295.jpeg",
+      "genero": "fantasia"
+    },
+    {
+      "id": 5,
+      "titulo": "Libro de prueba",
+      "autor": "Autor desconocido",
+      "precio": 120,
+      "descripcion": "LIbro de prueba",
+      "portada": "",
+      "genero": "fantasia"
+    }
+  ]
+}

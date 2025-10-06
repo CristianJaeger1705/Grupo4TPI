@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineXpress - Películas</title>
+
+  <!-- Bulma -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="estilos.css">
+  <link rel="stylesheet" href="componentes.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-menu">
+      <div class="navbar-end">
+        <a href="index.html"><i class="fas fa-house"></i> Inicio</a>
+        <a href="peliculas.html"><i class="fas fa-film"></i> Películas</a>
+        <a href="reseñas.html"><i class="fas fa-message"></i> Reseñas</a>
+        <a href="contacto.html"><i class="fas fa-user"></i> Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container has-text-centered">
+      <h2 class="title"><i class="fas fa-film"></i> Gestión de Películas</h2>
+      <p>Agrega y administra tus películas fácilmente</p>
+    </div>
+  </section>
+
+  <!-- Formulario de Películas -->
+  <section id="gallery" class="section">
+    <div class="container is-card-box">
+      <h3 class="title is-3 has-text-centered">🎞️Agregar nueva pelicula</h3>
+      
+        <form id="peliculaForm">
+        <div class="column is-half has-text-centered">
+            <div class="field">
+              <label class="label">Nombre:</label>
+              <input class="input" type="text" id="nombre" required>
+            </div>
+            </div>
+        <div class="column is-half has-text-centered">
+          <div class="field">
+            <label class="label">Año:</label>
+            <input class="input" type="number" id="anio" min="1900" max="2030" required>
+          </div>
+        </div>
+        <div class="column is-half has-text-centered">
+          <div class="field">
+            <label class="label">Director:</label>
+            <input class="input" type="text" id="director" required>
+          </div>
+        </div>
+        <div class="column is-half has-text-centered">
+          <div class="field">
+            <label class="label">Género:</label>
+            <input class="input" type="text" id="genero" required>
+          </div>
+        </div>
+        <div class="column is-half has-text-centered">
+          <div class="field">
+            <label class="label">Imagen(url):</label>
+            <input class="input" type="text" id="genero" required>
+          </div>
+        </div>
+        <div class="column is-full has-text-centered">
+          <button type="submit" class="button is-primary">Guardar Película</button>
+        </div>  
+        </form>
+      
+    </div>
+  </section>
+
+  <!-- Listado de Películas -->
+  <section class="section-card">
+    <h3 class="title is-3 has-text-centered">Películas agregadas</h3>
+    <div class="columns is-multiline is-centered" id="peliculasGrid">
+      <!-- Tarjetas generadas dinámicamente por JS -->
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 CineXpress - Todos los derechos reservados</p>
+  </footer>
+
+   <script>
+    // CAMBIA esta URL si tu JSON-Server corre en otro puerto o IP.
+    const API_URL = 'http://localhost:3000/peliculas'; 
+    let editingId = null;
+
+     document.addEventListener('DOMContentLoaded', loadPeliculas);
+
+    // Maneja el envío del formulario para Crear o Actualizar
+      document.getElementById('peliculaForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+ 
+     const peliculaData = {
+        nombre: form.nombre.value,
+        anio: parseInt(form.anio.value), // Aseguramos que sea número
+        director: form.director.value,
+        genero: form.genero.value,
+        imagen: form.imagen.value // Campo de imagen
+    };
+
+      try {
+        if (editingId) {
+          await updatePelicula(editingId, peliculaData);
+        } else {
+          await createPelicula(peliculaData);
+        }
+        resetForm();
+        loadPeliculas(); // Recargar la lista
+      } catch (error) {
+        alert('Error al guardar/actualizar la película: ' + error.message);
+      }
+    });
+    
+    // Cancela la edición
+    document.getElementById('cancelBtn').addEventListener('click', resetForm);
+
+    // ------------------------------------
+    // CRUD: CREATE (Crear)
+    // ------------------------------------
+    async function createPelicula(pelicula) {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(pelicula)
+        });
+        if (!response.ok) throw new Error('Fallo la creación en el servidor.');
+    }
+
+    // ------------------------------------
+    // CRUD: READ (Cargar)
+    // ------------------------------------
+    async function loadPeliculas() {
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error('Respuesta de red no fue ok');
+        
+        // Ajuste clave: Tu db.json usa "titulo" y el formulario "nombre".
+        // Aseguramos que los datos se lean correctamente.
+        let peliculas = await response.json(); 
+        
+        // Corregir inconsistencia del nombre de la propiedad si es necesario (asumo que tu db.json usa 'titulo' y tu form usa 'nombre')
+        // Si tu form usa 'nombre' y tu db.json usa 'titulo', podrías necesitar mapeo.
+        // Asumo que el formulario guardará con 'nombre' y la API lo guardará así.
+        
+        renderPeliculas(peliculas);
+      } catch (error) {
+        console.error('Error al cargar películas:', error);
+        document.getElementById('peliculasGrid').innerHTML = '<p class="has-text-danger">¡Error al conectar con la API! Asegúrate que JSON-Server está corriendo y la URL es correcta.</p>';
+      }
+    }
+
+    // ------------------------------------
+    // CRUD: UPDATE (Actualizar)
+    // ------------------------------------
+    async function updatePelicula(id, pelicula) {
+        const response = await fetch(`${API_URL}/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(pelicula)
+        });
+        if (!response.ok) throw new Error('Fallo la actualización en el servidor.');
+    }
+
+    // ------------------------------------
+    // CRUD: DELETE (Eliminar)
+    // ------------------------------------
+    async function deletePelicula(id) {
+      if (!confirm('¿Estás seguro de eliminar esta película?')) return;
+      try {
+        const response = await fetch(`${API_URL}/${id}`, {
+          method: 'DELETE'
+        });
+        if (!response.ok) throw new Error('Fallo la eliminación en el servidor.');
+        loadPeliculas(); // Recargar la lista después de eliminar
+      } catch (error) {
+        alert('Error al eliminar: ' + error.message);
+      }
+    }
+
+    // ------------------------------------
+    // INTERFAZ DE USUARIO
+    // ------------------------------------
+
+    // Función para mostrar los datos en el grid
+    function renderPeliculas(peliculas) {
+      const grid = document.getElementById('peliculasGrid');
+      grid.innerHTML = peliculas.map(p => `
+        <div class="column is-one-quarter">
+          <div class="card movie-card-custom">
+            <div class="card-image custom-image-container p-3">
+              <figure class="image is-4by5">
+                <img src="${p.imagen}" alt="Poster de ${p.nombre || p.titulo}" class="poster-image" onerror="this.onerror=null;this.src='https://via.placeholder.com/300x450.png?text=No+Image';">
+              </figure>
+            </div>
+            <div class="card-content">
+              <h4 class="title is-6">${p.nombre || p.titulo}</h4> 
+              <p class="is-size-7"><strong>Año:</strong> ${p.anio}</p>
+              <p class="is-size-7"><strong>Director:</strong> ${p.director || 'N/A'}</p>
+              <p class="is-size-7"><strong>Género:</strong> ${p.genero}</p>
+              <div class="mt-2 is-flex is-justify-content-center custom-button-group">
+                <button class="button is-small is-info" onclick="editPelicula(${p.id})">Editar</button>
+                <button class="button is-small is-danger" onclick="deletePelicula(${p.id})">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    // Carga los datos de la película al formulario para editar
+    async function editPelicula(id) {
+        try {
+            const response = await fetch(`${API_URL}/${id}`);
+            const pelicula = await response.json();
+            
+            // Llenar el formulario con los datos
+            document.getElementById('peliculaId').value = id;
+            document.getElementById('nombre').value = pelicula.nombre || pelicula.titulo;
+            document.getElementById('anio').value = pelicula.anio;
+            document.getElementById('director').value = pelicula.director || ''; // Asumo que director no existe en tu db.json original, se añade si editas.
+            document.getElementById('genero').value = pelicula.genero;
+            document.getElementById('imagen').value = pelicula.imagen;
+            
+            // Cambiar el estado del formulario a 'Editar'
+            editingId = id;
+            document.getElementById('formTitle').textContent = 'Editar Película (ID: ' + id + ')';
+            document.getElementById('cancelBtn').style.display = 'inline-block';
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch(error) {
+            alert('Error al cargar datos para editar: ' + error.message);
+        }
+    }
+
+    // Limpia el formulario y regresa al estado de 'Crear'
+    function resetForm() {
+      document.getElementById('peliculaForm').reset();
+      document.getElementById('peliculaId').value = '';
+      editingId = null;
+      document.getElementById('formTitle').textContent = 'Agregar nueva pelicula';
+      document.getElementById('cancelBtn').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
