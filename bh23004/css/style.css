@@ -1,27 +1,66 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 18px;
-  color: #222;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f7fa;
+  color: #333;
 }
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 18px;
+  background: #1e2a38;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
 }
-nav button {
-  margin-left: 8px;
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  background: #f6f8fa;
-}
-h1 {
+header h1 {
   margin: 0;
-  font-size: 1.4rem;
-  color: #0b4f6c;
+  font-size: 2rem;
 }
+nav {
+  margin-top: 15px;
+}
+nav a {
+  color: #fff;
+  margin: 0 12px;
+  text-decoration: none;
+  font-weight: bold;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+.banner {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 30px;
+}
+h2 {
+  border-left: 5px solid #1e2a38;
+  padding-left: 10px;
+  color: #1e2a38;
+}
+p {
+  line-height: 1.6;
+}
+.wide-img {
+  display: block;
+  max-width: 100%;
+  margin: 25px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+footer {
+  text-align: center;
+  background: #1e2a38;
+  color: #fff;
+  padding: 15px;
+  margin-top: 40px;
+}
+
 .section {
   max-width: 900px;
   margin-bottom: 30px;
@@ -101,4 +140,49 @@ button.secondary {
 }
 .message.ok {
   display: block;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.contact-form button {
+  padding: 10px;
+  background: #2980b9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background: #1f6391;
+}
+
+.error-page {
+  text-align: center;
+  padding: 50px;
+}
+
+.error-page img {
+  margin-top: 20px;
+  max-width: 500px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 15px;
+  background: #2980b9;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
 }

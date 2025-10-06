@@ -6,40 +6,54 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <h1>Herramientas de IA</h1>
-    <section id="section-herramientas" class="section">
-      <h2>Herramientas (CRUD)</h2>
-      <form id="herramienta-form" class="form">
-        <input type="hidden" id="herramienta-id" value="" />
-        <label>Nombre: <input id="herramienta-nombre" required /></label>
-        <label
-          >Descripción:
-          <textarea id="herramienta-descripcion" required></textarea>
-        </label>
-        <div class="form-actions">
-          <button type="submit" id="herramienta-submit">
-            Crear herramienta
-          </button>
-          <button type="button" id="herramienta-cancel" class="secondary">
-            Cancelar
-          </button>
-        </div>
-      </form>
+    <header>
+      <h1>Herramientas con IA</h1>
+      <nav>
+        <a href="./">Inicio</a>
+        <a href="./noticias.html">Noticias</a>
+        <a href="./herramientas.html">Herramientas</a>
+        <a href="./cursos.html">Cursos</a>
+        <a href="./contacto.html">Contacto</a>
+      </nav>
+    </header>
+    <main>
+      <section id="section-herramientas" class="section">
+        <h2>Herramientas (CRUD)</h2>
+        <form id="herramienta-form" class="form">
+          <input type="hidden" id="herramienta-id" value="" />
+          <label>Nombre: <input id="herramienta-nombre" required /></label>
+          <label
+            >Descripción:
+            <textarea id="herramienta-descripcion" required></textarea>
+          </label>
+          <div class="form-actions">
+            <button type="submit" id="herramienta-submit">
+              Crear herramienta
+            </button>
+            <button type="button" id="herramienta-cancel" class="secondary">
+              Cancelar
+            </button>
+          </div>
+        </form>
 
-      <div id="herramienta-mensaje" class="message"></div>
+        <div id="herramienta-mensaje" class="message"></div>
 
-      <table class="lista" id="tabla-herramientas">
-        <thead>
-          <tr>
-            <th style="display: none">ID</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </section>
+        <table class="lista" id="tabla-herramientas">
+          <thead>
+            <tr>
+              <th style="display: none">ID</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2025 Portal IA</p>
+    </footer>
     <script src="./js/app.js" defer></script>
   </body>
 </html>

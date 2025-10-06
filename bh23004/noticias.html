@@ -6,39 +6,52 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <h1>Noticias sobre IA</h1>
-    <section id="section-noticias" class="section">
-      <h2>Noticias (CRUD)</h2>
+    <header>
+      <h1>Noticias sobre IA</h1>
+      <nav>
+        <a href="./">Inicio</a>
+        <a href="./noticias.html">Noticias</a>
+        <a href="./herramientas.html">Herramientas</a>
+        <a href="./cursos.html">Cursos</a>
+        <a href="./contacto.html">Contacto</a>
+      </nav>
+    </header>
+    <main>
+      <section id="section-noticias" class="section">
+        <h2>Noticias (CRUD)</h2>
 
-      <form id="noticia-form" class="form">
-        <input type="hidden" id="noticia-id" value="" />
-        <label>Título: <input id="noticia-titulo" required /></label>
-        <label
-          >Contenido: <textarea id="noticia-contenido" required></textarea>
-        </label>
-        <div class="form-actions">
-          <button type="submit" id="noticia-submit">Crear noticia</button>
-          <button type="button" id="noticia-cancel" class="secondary">
-            Cancelar
-          </button>
-        </div>
-      </form>
+        <form id="noticia-form" class="form">
+          <input type="hidden" id="noticia-id" value="" />
+          <label>Título: <input id="noticia-titulo" required /></label>
+          <label
+            >Contenido: <textarea id="noticia-contenido" required></textarea>
+          </label>
+          <div class="form-actions">
+            <button type="submit" id="noticia-submit">Crear noticia</button>
+            <button type="button" id="noticia-cancel" class="secondary">
+              Cancelar
+            </button>
+          </div>
+        </form>
 
-      <div id="noticia-mensaje" class="message"></div>
+        <div id="noticia-mensaje" class="message"></div>
 
-      <table class="lista" id="tabla-noticias">
-        <thead>
-          <tr>
-            <th style="display: none">ID</th>
-            <th>Título</th>
-            <th>Contenido</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </section>
-
+        <table class="lista" id="tabla-noticias">
+          <thead>
+            <tr>
+              <th style="display: none">ID</th>
+              <th>Título</th>
+              <th>Contenido</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2025 Portal IA</p>
+    </footer>
     <script src="./js/app.js" defer></script>
   </body>
 </html>
